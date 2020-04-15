@@ -41,7 +41,7 @@ angular.module('angularSocketNodeApp').directive('searchResult', function (theSo
         console.log('logging user id' + scope.userService.uid);
         console.log(JSON.stringify(result));
         result.link_visited = true;
-        console.log(JSON.stringify(result));
+        console.log(JSON.stringify(result.description));
         theSocket.emit('follow', {id: result.id, uid: scope.userService.uid});
       };
 

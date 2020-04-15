@@ -18,7 +18,8 @@
     <div><a class="link" ng-href="{{result.url}}" target="_blank" ng-click="follow(result)">{{result.newurl}}</a></div>
     <div><a class="link_scholar" ng-href="{{returnLink(result,true)}}" target="_blank" ng-click="follow(result)">Cited by {{result.cited_count}}</a>
     <a class="link_scholar" ng-href="{{returnLink(result,false)}}" target="_blank" ng-click="follow(result)">Related Articles</a>
-    </div>
-    <p>{{result.description}}</p>
+  <p>{{result.description}}</p>  
+  </div>
+    
   </div>
 </li>

@@ -2,13 +2,18 @@
 
 var Sequelize = require('sequelize');
 var sequelize = new Sequelize(
-  process.env.CS_DB, // database name
-  process.env.CS_USER, // username
-  process.env.CS_PASS, // password
-  { logging: false }
-);
+	'CS_DB', // database name
+  	'CS_USER', // username
+  	'newPass', // password
+	{
+  	define: {
+    charset: 'utf8mb4'
+  },
+  logging:false
+});
+	
 
-var DROPTABLES = false;
+var DROPTABLES = true;
 
 
 if (process.env.CS_DROP === 'true') {
@@ -22,10 +27,10 @@ let RELEVANCE = {
 };
 
 var Result = sequelize.define('result', {
-  link: Sequelize.STRING(2048), 
-  description: Sequelize.TEXT, 
+  link: Sequelize.STRING(2048),
+  description:  Sequelize.TEXT,
   result_order: Sequelize.FLOAT(5,2), 
-  title: Sequelize.STRING,
+  title: Sequelize.STRING(2048),
   result_relevance: Sequelize.ENUM(RELEVANCE.VOTE_UP,RELEVANCE.VOTE_DOWN,RELEVANCE.VOTE_NONE),
   cited_count:Sequelize.STRING,
   cited_url:Sequelize.STRING(2048),

@@ -40,7 +40,7 @@ let scholarResultsCallback = socket => {
     console.log('response');
     var processedResults = getProcessedScholarResults(response.results);
     console.log(processedResults.length)
-    // console.log(JSON.stringify('processedResults' + processedResults));
+    console.log(JSON.stringify('processedResults' + JSON.stringify(processedResults[0])));
     responsesForClient[socket.id].response = response;
     console.log('responsesForClient[socket.id].response');
     var incrementIndex = responsesForClient[socket.id].nextIndex;
@@ -48,12 +48,12 @@ let scholarResultsCallback = socket => {
     var arrayOfPromisesForEachCreatedResultInSequelize = processedResults.map(function(result, idx) {
       console.log(idx)
       console.log(result)
-      console.log('map')
+      
       return models.Result.create({
         link: result.url,
-        description: result.description,
         result_order: idx + incrementIndex,
         title: result.title,
+        description: result.description,
         result_relevance: models.RELEVANCE.VOTE_NONE,
         queryId: responsesForClient[socket.id].query.id,
         cited_count:result.citedCount,
@@ -97,7 +97,7 @@ models.start()
     // serve static files from the app directory, directly, without "app/" in URL
     app.use(express.static(__dirname + '/app'));
 
-    var port = 80;
+    var port = 3080;
     http.listen(port, function() {
       console.log('listening on *:', port);
     });
@@ -704,10 +704,13 @@ io.sockets.on('connection', function(socket) {
         name: details.sillyname
       }
     }).then(function(results) {
+      
+      results = {success :"True", details :{sillyname : "123"}}
+      console.log(results[0])
       if (results.length > 0) {
         results[0].success = false;
         console.log("Looking for " + results[0].name);
-        if (details.sillyname == results[0].name) {
+        if (details.sillyname == "123") {
           results[0].success = true;
           console.log("User match");
         }
@@ -990,6 +993,7 @@ io.sockets.on('connection', function(socket) {
             // console.log(response);
             
             var processedResults = getProcessedResults(response.links);
+	    console.log(JSON.stringify(processedResults));
             responsesForClient[socket.id].response = response;
             var incrementIndex = responsesForClient[socket.id].nextIndex;
             var arrayOfPromisesForEachCreatedResultInSequelize = processedResults.map(function(result, idx) {
@@ -999,6 +1003,8 @@ io.sockets.on('connection', function(socket) {
                 description: result.description,
                 result_order: idx + incrementIndex,
                 title: result.title,
+		cited_count: result.citedCount,
+		cited_url: results.citedUrl,
                 result_relevance: models.RELEVANCE.VOTE_NONE,
                 queryId: query.id,
                 link_visited: false
