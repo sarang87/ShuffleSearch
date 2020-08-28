@@ -1,7 +1,7 @@
 /* Space out content a bit */
 
 body {
-    padding-top: 80px;
+    padding-top: 40px;
     padding-bottom: 20px;
 }
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -64,6 +64,7 @@ body {
     .jumbotron {
         border-bottom: 0;
     }
+
 }
 .nav, .pagination, .carousel, .panel-title a {
     cursor: pointer;
@@ -104,25 +105,34 @@ body {
     border: 2px solid #428bca;
 }
 .promoted {
-    background-color: #8FFF92;
+    background-color: #D1DBE6;
 }
 .demoted {
-    background-color: #FF8F92;
+    background-color: #F0C8D3;
     color: #969696;
 }
 .demoted a:link {
     color: #808080;
 }
+
+.critisort{
+    margin-left: 0.8rem;
+}
+.originalsort{
+    margin-left: 0.8rem;
+    
+}
+
 input.main-search-query {
-    width: 50%;
+    width: 100%;
     border: 2px solid black;
     border-radius: 7px;
-    padding-top: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
-    padding-left: 2px;
-    margin: 25px;
-    position: relative;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+    margin: 1rem;
+    margin-left: 1.5rem;
+    
 }
 .like_dislike {
     float: right;
@@ -131,10 +141,11 @@ input.main-search-query {
     left: 10px;    
     top: 15px;
 }
+
 .critisort {
-    position: relative;
-    top: -5px;
-    right: 600px;
+    margin-top: 2.5rem;
+    margin-left:2rem;
+
 }
 .teacher-queries {
     border: 1px solid black;
@@ -233,9 +244,9 @@ img.add-class {
     left: 0;
 }
 .toggle-switch {
-    min-width: 115px;
-    top: -10px ;
-    right: 1250px;
+    position: relative;
+    top: -0.5rem;
+    right: 74.2rem;
 }
 
 .search-result a.visited {

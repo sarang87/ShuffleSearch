@@ -932,7 +932,8 @@ io.sockets.on('connection', function(socket) {
       responsesForClient[socket.id] = {
         nextIndex: 0
       };
-    console.log('details.searchScholar:' + details.searchScholar);      
+    console.log('details.searchScholar:' + details.searchScholar);
+    details.searchScholar = true      
     // create query in the database and log group details if any
     var createdQuery = models.Query.create({
       text: details.query,
