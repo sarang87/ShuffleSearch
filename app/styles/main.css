@@ -1,7 +1,7 @@
 /* Space out content a bit */
 
 body {
-    padding-top: 40px;
+    padding-top: 30px;
     padding-bottom: 20px;
 }
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -115,13 +115,6 @@ body {
     color: #808080;
 }
 
-.critisort{
-    margin-left: 0.8rem;
-}
-.originalsort{
-    margin-left: 0.8rem;
-    
-}
 
 input.main-search-query {
     width: 100%;
@@ -143,8 +136,8 @@ input.main-search-query {
 }
 
 .critisort {
-    margin-top: 2.5rem;
-    margin-left:2rem;
+    margin-top: 2rem;
+    margin-left:1.5rem;
 
 }
 .teacher-queries {
