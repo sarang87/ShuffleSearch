@@ -22,6 +22,7 @@ var _ = require('lodash');
 'use strict' 
 var scholar = require('google-scholar');
 
+var searchScholar = true
 google.requestOptions = {
   timeout: 30000,
   gzip: true,
@@ -38,10 +39,23 @@ google.requestOptions = {
 let scholarResultsCallback = socket => {
   return response => {
     var processedResults = getProcessedScholarResults(response.results);
+    // console.log(JSON.stringify('processedResults' + processedResults));
     responsesForClient[socket.id].response = response;
     var incrementIndex = responsesForClient[socket.id].nextIndex;
-    var arrayOfPromisesForEachCreatedResultInSequelize = processedResults.map(function(result, idx) {   
-      return []
+    var arrayOfPromisesForEachCreatedResultInSequelize = processedResults.map(function(result, idx) {
+      return {
+        link: result.url,
+        description: result.description,
+        result_order: idx + incrementIndex,
+        title: result.title,
+        result_relevance: models.RELEVANCE.VOTE_NONE,
+        queryId: responsesForClient[socket.id].query.id,
+        cited_count:result.citedCount,
+        cited_url:result.citedUrl,
+        related_url:result.relatedUrl,
+        link_visited: false
+      }
+        
     });
     responsesForClient[socket.id].nextIndex +=processedResults.length
     Promise.all(arrayOfPromisesForEachCreatedResultInSequelize)
@@ -49,6 +63,7 @@ let scholarResultsCallback = socket => {
         socket.emit('search-results-scholar', sequelizeResults);
       })
        .catch(function (err){
+        console.log('error')
         console.log(err)
        });
   };
@@ -93,6 +108,7 @@ function getProcessedScholarResults(results) {
       resultsToSend.push(results[i]);
     }
   }
+  console.log(resultsToSend)
   return resultsToSend;
 }
   
@@ -123,14 +139,9 @@ function getProcessedResults(results) {
         results[i].description = "Youtube link";
       }
     }
-    // for now just remove these
-    //if results[i].title == Images for... && results[i].link == null
-    //   make a image search of google, and send back the picture data
   }
   return resultsToSend;
 }
-
-
 
 
 
@@ -214,9 +225,8 @@ io.sockets.on('connection', function(socket) {
 
   socket.on('load-more-results', function(data) {
     console.log("socket.on('load-more-results', function(data)");    
-    data.searchScholar = true
     console.log(responsesForClient)
-    if (data.searchScholar) {
+    if (searchScholar) {
       if(responsesForClient &&
         responsesForClient.hasOwnProperty(socket.id) &&
         responsesForClient[socket.id].hasOwnProperty('response')&&
@@ -245,10 +255,10 @@ io.sockets.on('connection', function(socket) {
       responsesForClient[socket.id] = {
         nextIndex: 0
       };
-    details.searchScholar = true      
+        
     var emptyPromise = promise.then(function(query) {
       responsesForClient[socket.id].query = query;
-      if (details.searchScholar) {
+      if (searchScholar) {
         console.log('searching using scholar api...')
         scholar.search(details.query)
         .then(scholarResultsCallback(socket));
