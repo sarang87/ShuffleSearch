@@ -40,7 +40,7 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "prestart": "next build",
-    "start": "node index.js"
+    "postinstall": "bower install",
+    "start": "node app.js"
   }
 }
