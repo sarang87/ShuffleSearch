@@ -86,7 +86,7 @@ var responsesForClient= {};
   // serve static files from the app directory, directly, without "app/" in URL
   app.use(express.static(__dirname + '/app'));
 
-  const PORT = process.env.PORT || 3000;
+  const port = process.env.PORT || 3000;
   http.listen(port, function() {
     console.log('listening on *:', port);
   });
