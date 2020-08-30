@@ -1,4 +1,4 @@
-'use strict';
+/* 'use strict';
 
 var Sequelize = require('sequelize');
 var sequelize = new Sequelize(
@@ -401,3 +401,4 @@ exports.start = function () {
     });
   
 };
+ */

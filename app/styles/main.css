@@ -75,6 +75,7 @@ body {
     
 }
 
+
 .link {
     color: gray;
     font-size: 18px;
@@ -100,6 +101,7 @@ body {
     margin-bottom:15px;
     border-left:2px;
     position: relative;
+    width:70%;
 }
 .search-result:hover {
     border: 2px solid #428bca;
@@ -125,7 +127,8 @@ input.main-search-query {
     padding-left: 1rem;
     margin: 1rem;
     margin-left: 1.5rem;
-    
+    margin-bottom: 2rem;
+    margin-top: 2rem;
 }
 .like_dislike {
     float: right;
@@ -250,6 +253,7 @@ img.add-class {
 @media (max-width: 1024px) {
     .search-result {
         padding-left: 80px;
+        
     }
     .search-result .like_dislike {
         display: inherit ! important;
