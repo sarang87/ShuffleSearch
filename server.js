@@ -48,7 +48,7 @@ let scholarResultsCallback = socket => {
         description: result.description,
         result_order: idx + incrementIndex,
         title: result.title,
-        result_relevance: models.RELEVANCE.VOTE_NONE,
+        result_relevance: 'none',
         queryId: responsesForClient[socket.id].query.id,
         cited_count:result.citedCount,
         cited_url:result.citedUrl,
