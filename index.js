@@ -39,7 +39,7 @@ google.requestOptions = {
 let scholarResultsCallback = socket => {
   return response => {
     var processedResults = getProcessedScholarResults(response.results);
-    // console.log(JSON.stringify('processedResults' + processedResults));
+    console.log(JSON.stringify('processedResults' + processedResults));
     responsesForClient[socket.id].response = response;
     var incrementIndex = responsesForClient[socket.id].nextIndex;
     var arrayOfPromisesForEachCreatedResultInSequelize = processedResults.map(function(result, idx) {
