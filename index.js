@@ -19,7 +19,6 @@ var google = require('google'); // api docs: https://www.npmjs.com/package/googl
 // var async = require('async');  //probbaly shouldn't need this now with promises
 var models = require('./models');
 var _ = require('lodash');
-'use strict' 
 var scholar = require('google-scholar');
 
 var searchScholar = true
