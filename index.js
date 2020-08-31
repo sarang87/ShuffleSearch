@@ -262,6 +262,7 @@ io.sockets.on('connection', function(socket) {
         scholar.search(details.query)
         .then(scholarResultsCallback(socket))
         .catch(function(err) {
+          console.log("Getting error while fetching results")
           console.log(err);
         });        
       }
