@@ -260,7 +260,10 @@ io.sockets.on('connection', function(socket) {
       if (searchScholar) {
         console.log('searching using scholar api...')
         scholar.search(details.query)
-        .then(scholarResultsCallback(socket));
+        .then(scholarResultsCallback(socket))
+        .catch(function(err) {
+          console.log(err);
+        });        
       }
     
     }).catch(function(err) {
