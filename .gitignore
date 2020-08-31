@@ -1,5 +1,4 @@
 node_modules
-!node_modules/google-scholar
 dist
 .tmp
 .sass-cache
