@@ -20,7 +20,7 @@ var google = require('google'); // api docs: https://www.npmjs.com/package/googl
 var models = require('./models');
 var _ = require('lodash');
 //var scholar = require('google-scholar');
-let scholar = require('google-scholar/index.js')
+let scholar = require('./google-scholar/index.js')
 var searchScholar = true
 google.requestOptions = {
   timeout: 30000,
